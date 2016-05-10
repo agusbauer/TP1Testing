@@ -1,4 +1,5 @@
 package threes;
+import java.util.Arrays;
 import java.util.Random;
 
 public class ThreesBoard {
@@ -152,7 +153,7 @@ public class ThreesBoard {
 	
 	public void set_tile(int row, int col, int v){
 		//Set cell in [row,col] position with a given value require
-		if (0<row && row<ROWS && 0<=col && col<COLUMNS){
+		if (0<=row && row<ROWS && 0<=col && col<COLUMNS){ //tiene que ser 0<=row
 			elements[row][col].setValue(v);
 		}
 		else
@@ -183,4 +184,17 @@ public class ThreesBoard {
 		}
 		return score;
 	}
+
+    public boolean equalTo(ThreesBoard boardToCompare) {
+        //if(boardToCompare.elements.length != this.elements.length)
+          //  return false;
+        for (int i = 0; i < elements.length; i++) {
+            for (int j = 0; j < elements.length; j++) {
+                if(this.get_tile(i,j).getValue() != boardToCompare.get_tile(i,j).getValue())
+                    return false;
+            }
+        }
+        return true;
+    }   
+        
 }
