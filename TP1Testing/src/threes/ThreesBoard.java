@@ -166,7 +166,7 @@ public class ThreesBoard {
 			return elements[row][col];
 		}
 		else
-			throw new IllegalArgumentException();
+                        throw new IllegalArgumentException();
 	}
 	
 	public int compute_score(){
@@ -195,6 +195,18 @@ public class ThreesBoard {
             }
         }
         return true;
-    }   
+    } 
+
+    @Override
+    public String toString() {
+        String result = "";
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLUMNS; j++) {
+                result += elements[i][j].toString() + " | ";
+            }
+            result += "\n";
+        }
+        return result;
+    }
         
 }

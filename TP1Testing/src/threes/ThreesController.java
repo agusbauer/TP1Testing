@@ -74,7 +74,7 @@ public class ThreesController {
 			}
 			else{//combine just once. Here there is no free tile in the middle
 				boolean updated = false;
-				for(int i=0; i<ThreesBoard.ROWS && !updated ; i++){
+				for(int i=0; i<ThreesBoard.ROWS-1 && !updated ; i++){ // le agregamos un -1
 					if(board.tiles_can_combine(board.get_tile(i, j), board.get_tile(i+1, j))){
 						//produce first combination
 						ThreesTile t = board.get_tile(i, j).combine_tile(board.get_tile(i+1, j));
