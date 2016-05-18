@@ -60,7 +60,8 @@ public class ThreesController {
 			//can_combine iff the last two tiles are not free and there is no free tile in the middle.
 			boolean can_combine = !board.get_tile(3, j).isFree() &&
 								  !board.get_tile(2, j).isFree() &&
-								  !(board.get_tile(1, j).isFree() && !board.get_tile(0, j).isFree());
+								  !board.get_tile(1, j).isFree() && //saque parentesis de mas
+								  !board.get_tile(0, j).isFree();
 					
 			if(!can_combine){//move the tile to fill the free spaces
 				int i=0;
@@ -86,6 +87,7 @@ public class ThreesController {
 						movedColumns.add(j);
 						board.set_tile(ThreesBoard.ROWS-1,j ,0);//empty the last position
 						modified = true;
+						updated = true; //update no seteado se lo agregue
 					}
 				}
 			}
@@ -178,7 +180,7 @@ public class ThreesController {
 					if(board.tiles_can_combine(board.get_tile(i, j), board.get_tile(i, j+1))){
 						//produce first combination
 						ThreesTile t = board.get_tile(i, j).combine_tile(board.get_tile(i, j+1));
-						board.set_tile(i, j, t.getValue());
+						board.set_tile(i, j, t.getValue()); 
 						//move anything else to left in the same row
 						for(int k=j+1; k<ThreesBoard.COLUMNS-1; k++){
 							board.set_tile(i, k, board.get_tile(i, k+1).getValue());

@@ -25,7 +25,7 @@ public class MoveUpTestSuite {
 	/*particiones: -tablero lleno,tablero vacio, tablero con entre 1 y 15 elementos,
 	  			   -hay elementos para fusionarse, no hay elementos para fusionarse	 
 	  			   -tablero null, tablero no null 
-	  bloques: tablero lleno sin fusion, tablero vacio sin fusion, tablero con elems sin fusion.
+	  bloques: tablero lleno sin fusion, tablero vacio sin fusion, tablero entre 1 y 15 sin fusion.
 	  		tablero lleno con fusion,
 	  			   */
 	
@@ -41,12 +41,7 @@ public class MoveUpTestSuite {
         }
         board.set_tile(0, 0, 2);
         
-        System.out.println(board);
-        ThreesBoard board2 = new ThreesBoard();
-        board2.set_tile(0,0,3);
-        board2.set_tile(1,0,3);
-        board2.set_tile(2,0,6);
-        //board2.set_tile(3,0,);
+        //System.out.println(board);
         ThreesController threes = new ThreesController(board);
         threes.move_up();
        // System.out.println(board);
@@ -65,7 +60,7 @@ public class MoveUpTestSuite {
         System.out.println(board);
         ThreesController threes = new ThreesController(board);
         threes.move_up();
-       // System.out.println(board);
+        System.out.println(threes.getBoard());
         assertTrue(threes.getBoard().get_tile(0, 0).getValue()==6);
         assertTrue(threes.getBoard().get_tile(1, 0).getValue()==0);
         assertTrue(threes.getBoard().get_tile(2, 0).getValue()==0);
