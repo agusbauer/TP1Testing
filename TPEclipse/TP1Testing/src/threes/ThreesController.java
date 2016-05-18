@@ -57,11 +57,10 @@ public class ThreesController {
 		boolean modified = false;
 		for(int j=0; j<ThreesBoard.COLUMNS ; j++){
 			
-			//can_combine iff the last two tiles are not free and there is no free tile in the middle.
-			boolean can_combine = !board.get_tile(3, j).isFree() &&
-								  !board.get_tile(2, j).isFree() &&
-								  !board.get_tile(1, j).isFree() && //saque parentesis de mas
-								  !board.get_tile(0, j).isFree();
+			//can_combine iff the first two tiles are not free and there is no free tile in the middle.
+			boolean can_combine = !board.get_tile(0, j).isFree() &&
+								  !board.get_tile(1, j).isFree() &&
+								  !(board.get_tile(2, j).isFree() && !board.get_tile(3, j).isFree());
 					
 			if(!can_combine){//move the tile to fill the free spaces
 				int i=0;
