@@ -5,6 +5,8 @@
  */
 package threes;
 
+import static org.junit.Assert.*;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -20,13 +22,25 @@ import org.junit.runners.Suite;
 
 public class MoveUpTestSuite {
 
+	/*particiones: -tablero lleno,tablero vacio, tablero con entre 1 y 15 elementos,
+	  			   -hay elementos para fusionarse, no hay elementos para fusionarse	 
+	  			   -tablero null, tablero no null 
+	  bloques: tablero lleno sin fusion, tablero vacio sin fusion, tablero con elems sin fusion.
+	  		tablero lleno con fusion,
+	  			   */
+	
+	
     @Test(timeout = 2000)
-    public void mustFoundElem() {
+    public void fullBoardMatch() {
         ThreesBoard board = new ThreesBoard(); 
-        board.set_tile(0,0,1);
-        board.set_tile(1,0,2);
-        board.set_tile(2,0,3);
-        board.set_tile(3,0,6);
+        
+        for (int i = 0; i < ThreesBoard.ROWS; i++) {
+            for (int j = 0; j < ThreesBoard.COLUMNS; j++) {
+                board.set_tile(i, j, 1); 
+            }
+        }
+        board.set_tile(0, 0, 2);
+        
         System.out.println(board);
         ThreesBoard board2 = new ThreesBoard();
         board2.set_tile(0,0,3);
@@ -35,27 +49,26 @@ public class MoveUpTestSuite {
         //board2.set_tile(3,0,);
         ThreesController threes = new ThreesController(board);
         threes.move_up();
-        System.out.println(board);
-        assert(board.equalTo(board2));
+       // System.out.println(board);
+        assertTrue(threes.getBoard().get_tile(0, 0).getValue() == 3);
+        assertTrue(threes.getBoard().get_tile(1, 0).getValue() == 1);
+        assertTrue(threes.getBoard().get_tile(2, 0).getValue() == 1);
     }
     
     @Test(timeout = 2000)
-    public void mustFoundElem2() {
+    public void BoardWithElemsMatch() {
         ThreesBoard board = new ThreesBoard(); 
-        board.set_tile(0,0,1);
-        board.set_tile(1,0,2);
-        board.set_tile(2,0,3);
+        board.set_tile(0,0,3);
+        board.set_tile(1,0,3);
+        board.set_tile(2,0,0);
         board.set_tile(3,0,0);
         System.out.println(board);
-        ThreesBoard board2 = new ThreesBoard();
-        board2.set_tile(0,0,3);
-        board2.set_tile(1,0,3);
-        //board2.set_tile(2,0,6);
-        //board2.set_tile(3,0,);
         ThreesController threes = new ThreesController(board);
         threes.move_up();
-        System.out.println(board);
-        assert(board.equalTo(board2));
+       // System.out.println(board);
+        assertTrue(threes.getBoard().get_tile(0, 0).getValue()==6);
+        assertTrue(threes.getBoard().get_tile(1, 0).getValue()==0);
+        assertTrue(threes.getBoard().get_tile(2, 0).getValue()==0);
     }
     
     @Test(expected=NullPointerException.class)
@@ -66,12 +79,12 @@ public class MoveUpTestSuite {
     }
     
     @Test(timeout = 2000)
-    public void emptyBoard() {
+    public void emptyBoardWithoutMatch() {
         ThreesBoard board = new ThreesBoard(); 
         ThreesBoard board2 = new ThreesBoard(); 
         ThreesController threes = new ThreesController(board);
         threes.move_up();
-        assert(board.equalTo(board2));
+        assertTrue(board.equalTo(board2));
     }
     
     @Test(timeout = 2000)
@@ -90,6 +103,8 @@ public class MoveUpTestSuite {
         }
         ThreesController threes = new ThreesController(board);
         threes.move_up();
-        assert(board.equalTo(board2));
+        assertTrue(board.equalTo(board2));
     }
+    
+    
 }
