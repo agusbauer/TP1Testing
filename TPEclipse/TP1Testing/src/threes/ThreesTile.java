@@ -1,6 +1,8 @@
 package threes;
 import java.util.Random;
 
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+
 public class ThreesTile {
 
 	private int value;

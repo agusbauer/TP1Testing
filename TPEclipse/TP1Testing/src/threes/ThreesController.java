@@ -70,16 +70,16 @@ public class ThreesController {
 					if(!board.get_tile(k, j).isFree())
 						movedColumns.add(j);
 					board.set_tile(k-1, j, board.get_tile(k, j).getValue());
-				}			
+				}
 			}
 			else{//combine just once. Here there is no free tile in the middle
 				boolean updated = false;
 				for(int i=0; i<ThreesBoard.ROWS-1 && !updated ; i++){ // le agregamos un -1
 					if(board.tiles_can_combine(board.get_tile(i, j), board.get_tile(i+1, j))){
-						//produce first combination
+						//produce first combination						
 						ThreesTile t = board.get_tile(i, j).combine_tile(board.get_tile(i+1, j));
 						board.set_tile(i, j, t.getValue());
-						//move anything else to left in the same row
+						//move anything else up in the same row
 						for(int k=i+2; k<ThreesBoard.ROWS; k++){
 							board.set_tile(k-1, j, board.get_tile(k, j).getValue());
 						}
@@ -91,8 +91,9 @@ public class ThreesController {
 				}
 			}
 		}
-		loadNextTileOnColumns(false);
+		loadNextTileOnColumns(true); // habia un error, teniamos que cambiarlo por true
 		return modified;
+		
 	}
 	
 	//command move down

@@ -40,11 +40,8 @@ public class MoveUpTestSuite {
             }
         }
         board.set_tile(0, 0, 2);
-        
-        //System.out.println(board);
         ThreesController threes = new ThreesController(board);
         threes.move_up();
-       // System.out.println(board);
         assertTrue(threes.getBoard().get_tile(0, 0).getValue() == 3);
         assertTrue(threes.getBoard().get_tile(1, 0).getValue() == 1);
         assertTrue(threes.getBoard().get_tile(2, 0).getValue() == 1);
@@ -57,10 +54,8 @@ public class MoveUpTestSuite {
         board.set_tile(1,0,3);
         board.set_tile(2,0,0);
         board.set_tile(3,0,0);
-        System.out.println(board);
         ThreesController threes = new ThreesController(board);
         threes.move_up();
-        System.out.println(threes.getBoard());
         assertTrue(threes.getBoard().get_tile(0, 0).getValue()==6);
         assertTrue(threes.getBoard().get_tile(1, 0).getValue()==0);
         assertTrue(threes.getBoard().get_tile(2, 0).getValue()==0);
