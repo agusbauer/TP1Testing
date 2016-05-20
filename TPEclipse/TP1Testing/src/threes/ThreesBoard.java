@@ -208,5 +208,17 @@ public class ThreesBoard {
         }
         return result;
     }
+    
+    public ThreesBoard clone(){
+    	if(elements == null)
+    		return null;
+    	ThreesBoard cloneBoard = new ThreesBoard();
+    	for (int i = 0; i < elements.length; i++) {
+			for (int j = 0; j < elements.length; j++) {
+				cloneBoard.set_tile(i, j, this.elements[i][j].getValue());
+			}
+		}
+		return cloneBoard;
+    }
         
 }

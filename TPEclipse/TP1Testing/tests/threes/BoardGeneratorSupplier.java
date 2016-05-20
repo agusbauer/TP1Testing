@@ -17,11 +17,10 @@ public class BoardGeneratorSupplier extends ParameterSupplier{
 		BoardGeneratorInterface annotation = sig.getAnnotation(BoardGeneratorInterface.class);
 		int numOfBoards = annotation.numberOfBoards();
 		List<PotentialAssignment> boards = new ArrayList<PotentialAssignment>();
-		for (int i = 0; i < numOfBoards; i++) {
-			ThreesBoard newBoard = generateRandomBoard();
-			boards.add(PotentialAssignment.forValue(Integer.toString(i), newBoard));
+		for (int i = 0; i < numOfBoards; i++) {			
+			boards.add(PotentialAssignment.forValue(Integer.toString(i), generateRandomBoard()));
 		}
-		return null;
+		return boards;
 	}
 	
 	private int getRandomNumberInRange(int min, int max) {
@@ -36,7 +35,7 @@ public class BoardGeneratorSupplier extends ParameterSupplier{
 		ThreesBoard board =  new ThreesBoard();
 		for (int j = 0; j < ThreesBoard.ROWS; j++) {
 			for (int k = 0; k < ThreesBoard.COLUMNS; k++) {
-				int value = validValues[getRandomNumberInRange(0,validValues.length-1)];
+				int value = validValues[getRandomNumberInRange(0,validValues.length-1)];			
 				board.set_tile(j, k, value);
 			}
 		}
