@@ -18,10 +18,10 @@ public class ThreesBoard {
 		// Creates a board of 4x4 with free tiles.
 		elements = new ThreesTile[ROWS][COLUMNS];
 		for(int i = 0; i<ROWS; i++){
-			for(int j = 0; i<COLUMNS; j++){
+			for(int j = 0; j<COLUMNS; j++){ // error! i<COLUMNS tiene que ser j<COLUMNS
 				elements[i][j] = new ThreesTile();
 			}
-		}
+		} 
 		// select 9 positions, and set with random numbers from 1, 2 or 3.
 		for(int set_tiles=0; set_tiles < total_tiles_to_set; set_tiles++){
 			int random_tile_row = getRandom(ROWS);
