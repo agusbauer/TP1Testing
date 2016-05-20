@@ -137,6 +137,7 @@ public class ThreesController {
 						movedColumns.add(j);
 						board.set_tile(0,j ,0);//empty the last position
 						modified = true;
+						updated = true; //update no seteado se lo agregue
 					}
 				}
 			}
