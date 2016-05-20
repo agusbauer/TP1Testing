@@ -207,5 +207,28 @@ public class MoveMethodsTests {
         		(threes.getBoard().get_tile(2, 3).getValue() == 0 && threes.getBoard().get_tile(3, 3).getValue() != 0)); 
         }
 	
+	@Test
+	public void moveDownNoMatches() {
+    	ThreesBoard board = new ThreesBoard(); 
+        
+        board.set_tile(0,0, 1);
+        board.set_tile(0,1, 1);
+        board.set_tile(0,2, 1);
+        board.set_tile(0,3, 1);
+       
+        System.out.println(board);
+        ThreesController threes = new ThreesController(board.clone());
+        threes.move_down();
+        System.out.println(threes.getBoard());
+        assertTrue(threes.getBoard().get_tile(1, 0).getValue() == 1);
+        assertTrue(threes.getBoard().get_tile(1, 1).getValue() == 1);
+        assertTrue(threes.getBoard().get_tile(1, 2).getValue() == 1);     
+        assertTrue(threes.getBoard().get_tile(1, 3).getValue() == 1);
+        assertTrue((threes.getBoard().get_tile(0, 0).getValue() != 0 && threes.getBoard().get_tile(0, 1).getValue() == 0 && threes.getBoard().get_tile(0, 2).getValue() == 0 && threes.getBoard().get_tile(0, 3).getValue() == 0) ||
+        		(threes.getBoard().get_tile(0, 0).getValue() == 0 && threes.getBoard().get_tile(0, 1).getValue() != 0 && threes.getBoard().get_tile(0, 2).getValue() == 0 && threes.getBoard().get_tile(0, 3).getValue() == 0) ||
+        		(threes.getBoard().get_tile(0, 0).getValue() == 0 && threes.getBoard().get_tile(0, 1).getValue() == 0 && threes.getBoard().get_tile(0, 2).getValue() != 0 && threes.getBoard().get_tile(0, 3).getValue() == 0) ||
+        		(threes.getBoard().get_tile(0, 0).getValue() == 0 && threes.getBoard().get_tile(0, 1).getValue() == 0 && threes.getBoard().get_tile(0, 2).getValue() == 0 && threes.getBoard().get_tile(0, 3).getValue() != 0));
+	}
+
 
 }

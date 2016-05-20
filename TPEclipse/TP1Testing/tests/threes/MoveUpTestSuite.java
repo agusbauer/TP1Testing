@@ -30,7 +30,7 @@ public class MoveUpTestSuite {
 	  			   */
 	
 	
-    @Test(timeout = 2000)
+    @Test(timeout=2000)
     public void fullBoardMatch() {
         ThreesBoard board = new ThreesBoard(); 
         
@@ -47,7 +47,7 @@ public class MoveUpTestSuite {
         assertTrue(threes.getBoard().get_tile(2, 0).getValue() == 1);
     }
     
-    @Test(timeout = 2000)
+    @Test(timeout=2000)
     public void BoardWithElemsMatch() {
         ThreesBoard board = new ThreesBoard(); 
         board.set_tile(0,0,3);
@@ -61,14 +61,14 @@ public class MoveUpTestSuite {
         assertTrue(threes.getBoard().get_tile(2, 0).getValue()==0);
     }
     
-    @Test(expected=NullPointerException.class)
+    @Test(expected=NullPointerException.class, timeout=2000)
     public void nullBoard() {
         ThreesBoard board = null; 
         ThreesController threes = new ThreesController(board);
         threes.move_up();
     }
     
-    @Test(timeout = 2000)
+    @Test(timeout=2000)
     public void emptyBoardWithoutMatch() {
         ThreesBoard board = new ThreesBoard(); 
         ThreesBoard board2 = new ThreesBoard(); 
@@ -77,7 +77,7 @@ public class MoveUpTestSuite {
         assertTrue(board.equalTo(board2));
     }
     
-    @Test(timeout = 2000)
+    @Test(timeout=2000)
     public void fullBoardNoMatch() {
         ThreesBoard board = new ThreesBoard(); 
         for (int i = 0; i < ThreesBoard.ROWS; i++) {
@@ -93,8 +93,30 @@ public class MoveUpTestSuite {
         }
         ThreesController threes = new ThreesController(board);
         threes.move_up();
-        assertTrue(board.equalTo(board2));
+        assertTrue(threes.getBoard().equalTo(board2));
     }
     
-    
+    @Test
+	public void moveUpNoMatches() {
+    	ThreesBoard board = new ThreesBoard(); 
+        
+        board.set_tile(3,0, 1);
+        board.set_tile(3,1, 1);
+        board.set_tile(3,2, 1);
+        board.set_tile(3,3, 1);
+       
+       // System.out.println(board);
+        ThreesController threes = new ThreesController(board.clone());
+        threes.move_up();
+        ///System.out.println(threes.getBoard());
+        assertTrue(threes.getBoard().get_tile(2, 0).getValue() == 1);
+        assertTrue(threes.getBoard().get_tile(2, 1).getValue() == 1);
+        assertTrue(threes.getBoard().get_tile(2, 2).getValue() == 1);     
+        assertTrue(threes.getBoard().get_tile(2, 3).getValue() == 1);
+        assertTrue((threes.getBoard().get_tile(3, 0).getValue() != 0 && threes.getBoard().get_tile(3, 1).getValue() == 0 && threes.getBoard().get_tile(3, 2).getValue() == 0 && threes.getBoard().get_tile(3, 3).getValue() == 0) ||
+        		(threes.getBoard().get_tile(3, 0).getValue() == 0 && threes.getBoard().get_tile(3, 1).getValue() != 0 && threes.getBoard().get_tile(3, 2).getValue() == 0 && threes.getBoard().get_tile(3, 3).getValue() == 0) ||
+        		(threes.getBoard().get_tile(3, 0).getValue() == 0 && threes.getBoard().get_tile(3, 1).getValue() == 0 && threes.getBoard().get_tile(3, 2).getValue() != 0 && threes.getBoard().get_tile(3, 3).getValue() == 0) ||
+        		(threes.getBoard().get_tile(3, 0).getValue() == 0 && threes.getBoard().get_tile(3, 1).getValue() == 0 && threes.getBoard().get_tile(3, 2).getValue() == 0 && threes.getBoard().get_tile(3, 3).getValue() != 0));
+	}
+
 }
